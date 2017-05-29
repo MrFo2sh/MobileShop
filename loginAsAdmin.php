@@ -6,17 +6,17 @@
 		$Email = mysql_real_escape_string($_POST['email']);
 		$Password = mysql_real_escape_string($_POST['password']);
 		$DB = new Database();
-		$validation = $DB->loginAsUser($Email, $Password);
+		$validation = $DB->loginAsAdmin($Email, $Password);
 		if($validation == "error"){
-			header('Location: login.html');
+			header('Location: LoginAsAdmin.html');
 		}elseif ($validation == "invalid"){
-			header('Location: login.html');
+			header('Location: LoginAsAdmin.html');
 		}else{
 			session_start();
-			$_SESSION["UserID"] = $validation;
-			header('Location: MobilesList.php');
+			$_SESSION["AdminID"] = $validation;
+			header('Location: AdminPage.php');
 		}
 	}else {
-		header('Location: login.html');
+		header('Location: LoginAsAdmin.html');
 	}
 ?>
